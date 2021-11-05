@@ -1,44 +1,39 @@
 ﻿using System;
 using System.Text;
+using Puissance4.Classe;
 
 namespace Puissance4
 {
     class Program
     {
-        private static int[,] _board = new int[7, 7];
+        
         private static int _currentPlayer = 1;
 
         static void Main(string[] args)
         {
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine(" 0 1 2 3 4 5 6 ");
-                Console.WriteLine("┌─┬─┬─┬─┬─┬─┬─┐");
-                for (var i = 0; i < 7; i++)
+                int coup = 1;
+
+                Grille grille = new Grille();
+                grille.init();
+
+                Player p1 = new Player();
+                Player p2 = new Player();
+
+                if(coup == 1)
                 {
-                    var line = new StringBuilder("│");
+                    p1.play();
+                    coup = 2;
+                }            
+                else
+                {
+                    p2.play();
+                    coup = 1;
+                }    
+                /*Console.WriteLine($"Joueur {_currentPlayer}, en quelle colonne jouez-vous ?");
 
-                    for (var j = 0; j < 7; j++)
-                    {
-                        if (_board[i, j] == 0)
-                            line.Append(' ');
-                        else if (_board[i, j] == 1)
-                            line.Append('O');
-                        else
-                            line.Append('X');
-                        line.Append('│');
-                    }
-
-                    Console.WriteLine(line.ToString());
-
-                    if (i != 6) Console.WriteLine("├─┼─┼─┼─┼─┼─┼─┤");
-                }
-
-                Console.WriteLine("└─┴─┴─┴─┴─┴─┴─┘");
-                Console.WriteLine($"Joueur {_currentPlayer}, en quelle colonne jouez-vous ?");
-
-                if (!int.TryParse(Console.ReadLine(), out int column) || column < 0 || column > 6) continue;
+                if (!int.TryParse(Console.ReadLine(), out int column) || column < 0 || column > 6) continue;*/
                 
                 var full = true;
                 for (var i = 6; i > -1; i--)

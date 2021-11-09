@@ -1,30 +1,57 @@
 using System;
 using System.Text;
-
+using System.Collections.Generic;
 namespace Puissance4.Classe
 {
-    class Pile
+    public class Pile
     {
-        int listChip;
-        int heigthPile  
-        {  
-            get {return heigth; }
-            set { heigth = 7; } 
+        private List<Chip> listChip;
+        private int height;
+
+        public Pile(int height)
+        {
+            this.height = height;
+            this.listChip = new List<Chip>();
+        }
+        public void addChip(Chip chip)
+        {
+            this.listChip.Add(chip);
         }
 
+        public int getChipValue(int index)
+        {
+            return this.listChip[index].idPlayer;
+        }
         public Boolean full()
         {
-            Grille grille = new Grille();
-
-            if(this.heigthPile != grille.heigh())
-            {
-                return false;
-            }
-            else
-            {
+            Boolean isFull = false;
+            
+            if(this.listChip[0].idPlayer != 0){
+                isFull = true;
                 Console.WriteLine("Colonne pleine");
-                return true;
+            }   
+            return isFull;
+        }
+
+        public void place(int idPlayer)
+        {
+            int i = listChip.Count -1;
+            Boolean check = true;
+            
+            while(i >= 0 && check)
+            {
+                if(this.listChip[i].idPlayer == 0)
+                {
+                   this.listChip[i].idPlayer = idPlayer; 
+                   check = false;
+                }
+                i--;
             }
+        }
+
+        public Boolean verfiPile(int index, int idPlayer)
+        {
+            return this.listChip[index].idPlayer == idPlayer;
         }
     }
 }

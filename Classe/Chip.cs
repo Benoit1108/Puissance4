@@ -3,8 +3,13 @@ using System.Text;
 
 namespace Puissance4.Classe
 {
-    class Chip
+    public class Chip
     {
-        
+        public int idPlayer {get; set;}
+
+        public Chip(int idPlayer)
+        {
+            this.idPlayer = idPlayer;
+        }
     }
 }
